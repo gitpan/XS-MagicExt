@@ -3,7 +3,7 @@ package Module::Install::XSUtil;
 
 use 5.005_03;
 
-$VERSION = '0.11';
+$VERSION = '0.13';
 
 use Module::Install::Base;
 @ISA     = qw(Module::Install::Base);
@@ -87,7 +87,7 @@ sub use_ppport{
 	
 	if(-e $filename){
 		$self->clean_files($filename);
-		$self->cc_append_to_ccflags('-DUSE_PPPORT');
+		$self->cc_define('-DUSE_PPPORT');
 		$self->cc_append_to_inc('.');
 	}
 	return;
@@ -249,7 +249,7 @@ sub cc_src_paths{
 
 	$self->_xs_initialize();
 
-	@dirs = qw(.) unless @dirs;
+	return unless @dirs;
 
 	my $mm     = $self->makemaker_args;
 
@@ -383,12 +383,19 @@ sub _extract_functions_from_header_file{
 	}
 
 	# remove other include file contents
-	my $chfile = q/\# (?:line)? \s+ \d+/;
+	my $chfile = q/\# (?:line)? \s+ \d+ /;
 	$contents =~ s{
-		^$chfile  \s+ (?! "\Q$h_file\E" ) .* $
-		.*
+		^$chfile  \s+ (?!"\Q$h_file\E")
+		.*?
 		^(?= $chfile)
 	}{}xmsig;
+
+	if(_VERBOSE){
+		local *H;
+		open H, "> $h_file.out"
+			and print H $contents
+			and close H;
+	}
 
 	while($contents =~ m{
 			([^\\;\s]+                # type
@@ -439,8 +446,6 @@ sub cc_append_to_funclist{
 package
 	MY;
 
-use Config;
-
 # XXX: We must append to PM inside ExtUtils::MakeMaker->new().
 sub init_PM{
 	my $self = shift;
@@ -473,4 +478,4 @@ sub const_cccmd {
 1;
 __END__
 
-#line 614
+#line 628
