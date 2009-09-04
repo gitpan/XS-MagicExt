@@ -19,7 +19,10 @@ META.yml
 README
 t/00_load.t
 t/01_mgx.t
-t/MGX.xs
+t/test/lib/MGX.pm
+t/test/Makefile.PL
+t/test/MGX.xs
+t/test/t/mgx.t
 xt/01_podspell.t
 xt/02_pod.t
 xt/03_pod-coverage.t
