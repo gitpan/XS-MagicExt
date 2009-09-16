@@ -19,8 +19,17 @@ META.yml
 README
 t/00_load.t
 t/01_mgx.t
+t/test/inc/Module/Install.pm
+t/test/inc/Module/Install/Base.pm
+t/test/inc/Module/Install/Can.pm
+t/test/inc/Module/Install/External.pm
+t/test/inc/Module/Install/Makefile.pm
+t/test/inc/Module/Install/Metadata.pm
+t/test/inc/Module/Install/WriteAll.pm
+t/test/inc/Module/Install/XSUtil.pm
 t/test/lib/MGX.pm
 t/test/Makefile.PL
+t/test/META.yml
 t/test/MGX.xs
 t/test/t/mgx.t
 xt/01_podspell.t

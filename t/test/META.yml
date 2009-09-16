@@ -1,12 +1,11 @@
 ---
-abstract: 'Provides PERL_MAGIC_ext manipulators for XS modules'
+abstract: 'A testing module for XS::MagicExt'
 author:
   - 'Goro Fuji (gfx) <gfuji(at)cpan.org>.'
 build_requires:
   Devel::PPPort: 3.19
   ExtUtils::MakeMaker: 6.42
   ExtUtils::ParseXS: 2.2
-  Test::More: 0.88
   XSLoader: 0.08
 configure_requires:
   Devel::PPPort: 3.19
@@ -17,16 +16,15 @@ license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
-module_name: XS::MagicExt
-name: XS-MagicExt
+module_name: MGX
+name: MGX
 no_index:
   directory:
     - inc
     - t
-    - xt
 requires:
-  perl: 5.8.1
+  XS::MagicExt: 0
+  perl: 5.00503
 resources:
   license: http://dev.perl.org/licenses/
-  repository: git://github.com/gfx/Perl-XS-MagicExt.git
-version: 0.05
+version: 1.23
